@@ -52,6 +52,58 @@ import { Component} from "@angular/core";
     <button
       (click)="handleClick()"
     >Change name</button>
+    
+<!--    2 way databinding-->
+<!--    We need FormsModule for get that working-->
+
+    <hr>
+    <hr>
+    <br>
+    <br>
+    
+    
+<!--    ngModel - property binding-->
+<!--    ngModelChange - event binding-->
+    <input
+      type="text"
+      [ngModel]="name"
+      (ngModelChange)="handleChange($event)"
+    >
+    <div>
+      still 1  way databinding with ng-model --- {{name}}
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <input
+      type="text"
+      [(ngModel)]="name"
+    >
+    <div>
+      2 way databinding --- {{name}}
+    </div>
+
+    <hr>
+    <hr>
+    <br>
+    <br>
+    
+<!--    template ref variables-->
+    gives access to certain DOM element
+    <div class="app">
+      <button (click)="handleClickTemplate(username.value)">Get value</button>
+      <input
+        type="text" #username>
+      <div>
+        {{name}}
+      </div>
+    </div>
+    
+    
+    
+    
   `
 })
 
@@ -77,7 +129,15 @@ export class AppComponent {
   }
 
   handleClick() {
+
     this.name = "Pentshuk";
+  }
+
+  handleClickTemplate(value: string) {
+    console.log(value);
+  }
+  handleChange(value: string) {
+    this.name = value;
   }
 
 }
