@@ -10,19 +10,19 @@ import { Component} from "@angular/core";
 //   checkedInDate: number | null
 //
 // }
-interface Child {
-  name: string,
-  age: number
-}
-
-
-interface Passenger {
-  id: number,
-  fullname: string,
-  checkedIn: boolean,
-  checkedInDate?: number,
-  children: Child[] | null
-}
+// interface Child {
+//   name: string,
+//   age: number
+// }
+//
+//
+// interface Passenger {
+//   id: number,
+//   fullname: string,
+//   checkedIn: boolean,
+//   checkedInDate?: number,
+//   children: Child[] | null
+// }
 
 
 
@@ -188,7 +188,7 @@ interface Passenger {
 <!--    end of ngFor-->
 
 
-    <br><br>
+<!--    <br><br>-->
 
 <!--    <div class="app">-->
 <!--      <h3>Airline Passengers</h3>-->
@@ -311,8 +311,19 @@ interface Passenger {
 <!--    </div>-->
     
     
+    
+    
+<!--    Communication between smart component(tied to service) and its child component:-->
+<!--    -->
+<!--    Data flows down-->
+<!--    Events emit up-->
+    
+    
 
 
+    <passenger-dashboard>
+      
+    </passenger-dashboard>
 
 
 
@@ -360,56 +371,56 @@ export class AppComponent {
 
 
 
-  name: string = '';
-  handleChange(event: any) {
-    this.name = event.target.value;
-  }
+  // name: string = '';
+  // handleChange(event: any) {
+  //   this.name = event.target.value;
+  // }
 
   // end of if
 
-  passengers: Passenger[] = [{
-    id: 1,
-    fullname: 'Jan',
-    checkedIn: true,
-    checkedInDate: 14884128000000,
-    children: null
-  },
-    {
-      id: 2,
-      fullname: 'Mati',
-      checkedIn: false,
-      checkedInDate: null,
-      children: [{name: 'Ted', age: 12}, {name: 'Eva', age: 15}]
-
-
-    },
-    {
-      id: 3,
-      fullname: 'Toomas',
-      checkedIn: true,
-      checkedInDate: 14884128000000,
-      children: [{name: 'Axel', age: 22}, {name: 'Tom', age: 5}]
-
-
-    },
-    {
-      id: 4,
-      fullname: 'Marko',
-      checkedIn: true,
-      checkedInDate: 14884128000000,
-      children: null
-
-
-    },
-    {
-      id: 5,
-      fullname: 'Neeme',
-      checkedIn: false,
-      checkedInDate: null,
-      children: null
-    }
-
-  ];
+  // passengers: Passenger[] = [{
+  //   id: 1,
+  //   fullname: 'Jan',
+  //   checkedIn: true,
+  //   checkedInDate: 14884128000000,
+  //   children: null
+  // },
+  //   {
+  //     id: 2,
+  //     fullname: 'Mati',
+  //     checkedIn: false,
+  //     checkedInDate: null,
+  //     children: [{name: 'Ted', age: 12}, {name: 'Eva', age: 15}]
+  //
+  //
+  //   },
+  //   {
+  //     id: 3,
+  //     fullname: 'Toomas',
+  //     checkedIn: true,
+  //     checkedInDate: 14884128000000,
+  //     children: [{name: 'Axel', age: 22}, {name: 'Tom', age: 5}]
+  //
+  //
+  //   },
+  //   {
+  //     id: 4,
+  //     fullname: 'Marko',
+  //     checkedIn: true,
+  //     checkedInDate: 14884128000000,
+  //     children: null
+  //
+  //
+  //   },
+  //   {
+  //     id: 5,
+  //     fullname: 'Neeme',
+  //     checkedIn: false,
+  //     checkedInDate: null,
+  //     children: null
+  //   }
+  //
+  // ];
 
 
 
