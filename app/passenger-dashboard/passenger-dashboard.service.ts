@@ -19,7 +19,7 @@ export class PassengerDashboardService {
 
   // at the moment we get passenger array from service getPassenger method
   // later on we put the data into db json file which act as API
-  getPassenger(): Observable<Passenger[]> {
+  getPassengers(): Observable<Passenger[]> {
     return this.http.
       get(PASSENGER_API).
       map((response: Response) => response.json()).
@@ -49,4 +49,11 @@ export class PassengerDashboardService {
       return Observable.throw(error.json());
     });
   }
+
+  getPassenger(id: number): Observable<Passenger> {
+    return this.http.get(`${PASSENGER_API}/${id}`).
+    map((response: Response) => response.json()).
+    catch((error: any) => Observable.throw(error.json()));
+  }
+
 }

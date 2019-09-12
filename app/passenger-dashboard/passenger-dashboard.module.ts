@@ -13,16 +13,20 @@ import {PassengerDetailComponent} from "./components/passenger-detail/passenger-
 
 // services
 import {PassengerDashboardService} from "./passenger-dashboard.service";
+import {PassengerViewerComponent} from "./containers/passenger-viewer/passenger-viewer.component";
 
 
 @NgModule({
   declarations: [PassengerDashboardComponent,
+    PassengerViewerComponent,
+    // components
     PassengerCountComponent,
-    PassengerDetailComponent
+    PassengerDetailComponent,
+
 
   ],
   exports: [
-    PassengerDashboardComponent
+    PassengerViewerComponent
   ],
   imports: [CommonModule, HttpModule
   ],

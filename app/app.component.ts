@@ -321,9 +321,9 @@ import { Component} from "@angular/core";
     
 
 
-    <passenger-dashboard>
+    <passenger-viewer>
       
-    </passenger-dashboard>
+    </passenger-viewer>
 
 
 
