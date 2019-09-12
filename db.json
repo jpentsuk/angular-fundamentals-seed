@@ -1,1 +1,66 @@
-{}
+{
+  "passengers": [
+    {
+      "id": 2,
+      "fullname": "Matikas",
+      "checkedIn": false,
+      "checkedInDate": null,
+      "children": [
+        {
+          "name": "Ted",
+          "age": 12
+        },
+        {
+          "name": "Eva",
+          "age": 15
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "fullname": "Toomas",
+      "checkedIn": true,
+      "checkedInDate": 14884128000000,
+      "children": [
+        {
+          "name": "Axel",
+          "age": 22
+        },
+        {
+          "name": "Tom",
+          "age": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "fullname": "Marko",
+      "checkedIn": true,
+      "checkedInDate": 14884128000000,
+      "children": null
+    },
+    {
+      "id": 5,
+      "fullname": "Neeme",
+      "checkedIn": false,
+      "checkedInDate": null,
+      "children": null
+    },
+    {
+      "id": 6,
+      "fullname": "Anne",
+      "checkedIn": true,
+      "checkedInDate": 14784128000000,
+      "children": [
+        {
+          "name": "Anu",
+          "age": 2
+        },
+        {
+          "name": "Toomas",
+          "age": 5
+        }
+      ]
+    }
+  ]
+}
