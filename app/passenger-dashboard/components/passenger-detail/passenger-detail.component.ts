@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, OnInit, OnChanges, Input, Output, EventEmitter} from "@angular/core";
 import {Passenger} from "../../models/passenger.interface";
 
 
@@ -32,7 +32,7 @@ import {Passenger} from "../../models/passenger.interface";
      </div>
   `
 })
-export class PassengerDetailComponent{
+export class PassengerDetailComponent implements OnChanges, OnInit{
 
   // input means data coming from parent component
   @Input()
@@ -52,6 +52,19 @@ export class PassengerDetailComponent{
 
   constructor() {
 
+  }
+
+  // since this ngOnChanges is called before than NgOnInit, we can reassign data here, so when editing current object, parent object
+  // (name list above) will not change during editing and updates it after "Done" button is clicked
+  ngOnChanges(changes) {
+    if (changes.detail) {
+      this.detail = Object.assign({}, changes.detail.currentValue);
+    }
+    console.log("ngChanges");
+  }
+
+  ngOnInit() {
+    console.log("NgInit");
   }
 
   onNameChange(value: string) {

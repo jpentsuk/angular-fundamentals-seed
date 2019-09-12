@@ -11,6 +11,13 @@ import {Passenger} from "../../models/passenger.interface";
         
       </passenger-count>
       
+      
+      <div *ngFor="let passenger of passengers">
+        {{passenger.fullname}}
+      </div>
+      
+      
+      
 <!--      we are property bind passenger detail into child component-->
       <passenger-detail *ngFor="let passenger of passengers;" 
                         [detail] = "passenger"
@@ -31,7 +38,7 @@ export class PassengerDashboardComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log("NgOnInit");
+    //console.log("NgOnInit");
     this.passengers  = [{
       id: 1,
       fullname: 'Jan',
@@ -79,14 +86,25 @@ export class PassengerDashboardComponent implements OnInit{
     // generally main component is called as a container and it sits in the container folder
     // its children are so-called stateless components and sit in components folder
 
-
   }
-  handleRemove(event) {
-    console.log(event);
+  handleRemove(event: Passenger) {
+    // filter returns array that does not consist those objects that does meet the condition
+    this.passengers = this.passengers.filter((passenger: Passenger) => {
+      return passenger.id !== event.id;
+    });
   }
 
-  handleEdit(event) {
-    console.log(event);
+  handleEdit(event: Passenger) {
+    // map returns array that checks every object in the array
+    this.passengers = this.passengers.map((passenger: Passenger)=> {
+      if (passenger.id === event.id) {
+        // object will assigned, old state passenger and new state event
+        passenger = Object.assign({}, passenger, event);
+      }
+
+      return passenger;
+    })
+
   }
 
 
