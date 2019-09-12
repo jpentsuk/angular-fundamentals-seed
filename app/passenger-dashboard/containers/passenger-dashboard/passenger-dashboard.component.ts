@@ -11,7 +11,12 @@ import {Passenger} from "../../models/passenger.interface";
         
       </passenger-count>
       
-      <passenger-detail *ngFor="let passenger of passengers;" [detail] = passenger>
+<!--      we are property bind passenger detail into child component-->
+      <passenger-detail *ngFor="let passenger of passengers;" 
+                        [detail] = "passenger"
+                        (edit) = "handleEdit($event)"
+                        (remove)= "handleRemove($event)"
+      >
         
       </passenger-detail>
       
@@ -73,6 +78,15 @@ export class PassengerDashboardComponent implements OnInit{
 
     // generally main component is called as a container and it sits in the container folder
     // its children are so-called stateless components and sit in components folder
+
+
+  }
+  handleRemove(event) {
+    console.log(event);
+  }
+
+  handleEdit(event) {
+    console.log(event);
   }
 
 
