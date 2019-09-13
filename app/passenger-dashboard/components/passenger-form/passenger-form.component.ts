@@ -10,20 +10,42 @@ import {Baggage} from "../../models/baggage.interface";
       
         {{detail | json}}
       <div>
+        
+<!--        We can have access via #fullname reference to ngModel, which gives us error handling options to use-->
+        
         Passenger name:
         <input
           type="text"
           name="fullname"
           [ngModel] = "detail?.fullname"
+          required
+          #fullname = "ngModel"
         >
-
+        
+<!--        when error then show error message, but if fullname was empty at first, then to avoid error-->
+<!--        we have to use keyword "dirty"-->
+        
+<!--        we can also use keyword "touched". So at first error is not displayed but when user clicks input form and leaves, then the error is shown-->
+        <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
+          Passenger name is required
+        </div>
+        
+        
+        
+<!--        we can also use "minlength = 1" or so one, and then can have access to it via errors?.minlength -->
         <div>
         Passenger ID:
           <input
             type="number"
             name="id"
             [ngModel] = "detail?.id"
+            required
+            #id = "ngModel"
           >
+          <div *ngIf="id.errors?.required && id.dirty" class="error">
+             Passenger ID is required
+          </div>
+
         </div>
         
         <div>
@@ -76,7 +98,11 @@ import {Baggage} from "../../models/baggage.interface";
           
         </div>
       </div>
-      {{form.value | json}}
+      <div>
+        {{form.value | json}}
+        Valid: {{form.valid | json}}
+        Invalid: {{form.invalid | json}}
+      </div>
     </form>
     
   `
