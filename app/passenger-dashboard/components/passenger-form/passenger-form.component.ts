@@ -1,5 +1,6 @@
 import { Component, Input} from "@angular/core";
 import {Passenger} from "../../models/passenger.interface";
+import {Baggage} from "../../models/baggage.interface";
 
 @Component({
   selector: 'passenger-form',
@@ -26,26 +27,16 @@ import {Passenger} from "../../models/passenger.interface";
         </div>
         
         <div>
-          <label>
-            <input 
-            type="radio"
-            [value]="true"
-            name="checkedIn"
-            [ngModel] = "detail?.checkedIn"
-            (ngModelChange)="toggleCheckIn($event)"
-            >
-            Yes
-          </label>
+          
 
           <label>
             <input
-              type="radio"
-              [value]="false"
+              type="checkbox"
               name="checkedIn"
               [ngModel] = "detail?.checkedIn"
               (ngModelChange)="toggleCheckIn($event)"
             >
-            No
+            Yes
           </label>
         </div>
         
@@ -57,6 +48,27 @@ import {Passenger} from "../../models/passenger.interface";
             [ngModel]="detail?.checkedInDate"
           >
         </div>
+        
+        <div>
+            Luggage:
+          <select
+            name="baggage"
+            [ngModel]="detail?.baggage"
+          >
+            
+<!--            We can also use [ngValue] instead of [value] and [selected], but the last one has better readability-->
+            <option
+              *ngFor="let item of baggage"
+              [value]="item.key"
+              [selected]="item.key === detail?.baggage"
+            >
+              {{item.value}}
+              
+            </option>
+            
+          </select>
+        </div>
+        
         
         
         
@@ -75,6 +87,24 @@ export class PassengerFormComponent {
   constructor() {
 
   }
+
+  baggage: Baggage[] = [{
+    key: "none",
+    value: "No baggage"
+  },
+    {
+      key: "hand-only",
+      value: "Hand baggage"
+    },
+    {
+      key: "hold-only",
+      value: "Hold baggage"
+    },
+    {
+      key: "hand-hold",
+      value: "Hand and hold baggage"
+    }
+  ];
 
   @Input()
   detail: Passenger;
