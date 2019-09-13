@@ -27,6 +27,10 @@ import {Passenger} from "../../models/passenger.interface";
        <button (click)="onRemove()">
          Remove
        </button>
+       
+       <button (click)="goToPassenger()">
+         View
+       </button>
      </div>
   `
 })
@@ -38,11 +42,14 @@ export class PassengerDetailComponent implements OnChanges, OnInit{
   editing: boolean = false;
 
   @Output()
-  remove: EventEmitter<any> = new EventEmitter();
+  remove: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
 
   @Output()
-  edit: EventEmitter<any> = new EventEmitter();
+  edit: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
+  @Output()
+  view: EventEmitter<Passenger> = new EventEmitter<Passenger>();
 
 
 
@@ -81,6 +88,10 @@ export class PassengerDetailComponent implements OnChanges, OnInit{
   // need to pass data to parent, since we have to remove particular passenger from passenger array
   onRemove() {
     this.remove.emit(this.detail);
+  }
+
+  goToPassenger() {
+    this.view.emit(this.detail);
   }
 }
 
