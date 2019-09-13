@@ -1,5 +1,11 @@
 import { Component} from "@angular/core";
 
+interface Nav {
+  link: string,
+  name: string,
+  exact: boolean
+}
+
 
 // date can either be number or null, so those are identical:
 
@@ -327,20 +333,15 @@ import { Component} from "@angular/core";
         
      
       <a
-      routerLink="/"
+      *ngFor="let item of nav"  
+      [routerLink]="item.link"
       routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}"
+      [routerLinkActiveOptions]= "{exact: item.exact}"
       >
       
-      Home
+      {{item.name}}
       </a>
-
-      <a 
-      routerLink="/oops"
-      routerLinkActive="active"
-      >
-      404
-      </a>
+        
       <router-outlet>
       
       </router-outlet>
@@ -445,6 +446,24 @@ export class AppComponent {
   //   }
   //
   // ];
+
+  nav : Nav[] = [
+    {
+      link: '/',
+      name: "Home",
+      exact: true
+    },
+    {
+      link: '/oops',
+      name: "404",
+      exact: false
+    },
+    {
+      link: '/passengers',
+      name: "Passengers",
+      exact: true
+    }
+  ];
 
 
 

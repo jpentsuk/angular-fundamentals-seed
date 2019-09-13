@@ -2,6 +2,9 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
+import {RouterModule, Routes} from "@angular/router";
+
+
 
 
 
@@ -19,6 +22,13 @@ import {PassengerViewerComponent} from "./containers/passenger-viewer/passenger-
 import {PassengerFormComponent} from "./components/passenger-form/passenger-form.component";
 
 
+
+// since we use routing now for passenger-dashboard, we can remove exports under Ngmodule
+const routes: Routes = [
+  { path: 'passengers', component: PassengerDashboardComponent}
+];
+
+
 @NgModule({
   declarations: [
     // containers
@@ -31,10 +41,7 @@ import {PassengerFormComponent} from "./components/passenger-form/passenger-form
 
 
   ],
-  exports: [
-    PassengerViewerComponent
-  ],
-  imports: [CommonModule, HttpModule, FormsModule
+  imports: [CommonModule, HttpModule, FormsModule, RouterModule.forChild(routes)
   ],
   providers:  [PassengerDashboardService]
 })
