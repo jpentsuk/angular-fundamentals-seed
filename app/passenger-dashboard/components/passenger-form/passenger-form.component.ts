@@ -1,4 +1,4 @@
-import { Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Passenger} from "../../models/passenger.interface";
 import {Baggage} from "../../models/baggage.interface";
 
@@ -6,9 +6,10 @@ import {Baggage} from "../../models/baggage.interface";
   selector: 'passenger-form',
   styleUrls: ['passenger-form.component.scss'],
   template: `
-    <form #form="ngForm" novalidate>
+    
+<!--    we do not use the click event near the button. Since we said there button type is "submit", we can use function here-->
+    <form (ngSubmit)="handleSubmit(form.value, form.valid)" #form="ngForm" novalidate>
       
-        {{detail | json}}
       <div>
         
 <!--        We can have access via #fullname reference to ngModel, which gives us error handling options to use-->
@@ -95,13 +96,16 @@ import {Baggage} from "../../models/baggage.interface";
         
         
         <div>
-          
+          <button
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            Update passenger
+          </button>
         </div>
       </div>
       <div>
-        {{form.value | json}}
-        Valid: {{form.valid | json}}
-        Invalid: {{form.invalid | json}}
+        
       </div>
     </form>
     
@@ -135,9 +139,18 @@ export class PassengerFormComponent {
   @Input()
   detail: Passenger;
 
+  @Output()
+  update: EventEmitter<Passenger> = new EventEmitter<Passenger>();
+
   toggleCheckIn(checkedIn: boolean) {
     if (checkedIn) {
       this.detail.checkedInDate = Date.now(); // ms
+    }
+  }
+
+  handleSubmit(passenger: Passenger, isValid: boolean) {
+    if (isValid) {
+      this.update.emit(passenger);
     }
   }
 }
