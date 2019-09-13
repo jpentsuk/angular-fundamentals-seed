@@ -7,7 +7,11 @@ import {Passenger} from "../../models/passenger.interface";
   styleUrls: ['passenger-viewer.component.scss'],
   template: `
     <div>
-      {{passenger | json}}
+      <passenger-form
+        [detail] = "passenger"
+      >
+        
+      </passenger-form>
     </div>
   `
 })
@@ -15,6 +19,7 @@ import {Passenger} from "../../models/passenger.interface";
 export class PassengerViewerComponent implements OnInit{
 
   passenger: Passenger;
+
 
   constructor(private passengerService: PassengerDashboardService) {
 
