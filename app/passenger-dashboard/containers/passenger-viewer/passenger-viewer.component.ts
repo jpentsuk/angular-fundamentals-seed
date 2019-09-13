@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {PassengerDashboardService} from "../../passenger-dashboard.service";
 import {Passenger} from "../../models/passenger.interface";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import 'rxjs/add/operator/switchMap'
 
 @Component({
   selector: 'passenger-viewer',
@@ -33,12 +34,11 @@ export class PassengerViewerComponent implements OnInit{
   ngOnInit() {
 
     // this function returns us the actual id from the url
-    this.route.params.subscribe((data: Params) => {
-      console.log(data);
-    });
-
-    this.passengerService.getPassenger(1).
-      subscribe((data: Passenger) => this.passenger = data);
+    // and switchMap is putting together to subscribes
+    this.route.params.switchMap((data: Passenger) => {
+      return this.passengerService.getPassenger(data.id)
+    })
+      .subscribe((data: Passenger) => this.passenger = data);
   }
 
   onUpdatePassenger(event: Passenger) {
