@@ -25,7 +25,12 @@ import {PassengerFormComponent} from "./components/passenger-form/passenger-form
 
 // since we use routing now for passenger-dashboard, we can remove exports under Ngmodule
 const routes: Routes = [
-  { path: 'passengers', component: PassengerDashboardComponent}
+  { path: 'passengers',
+    children: [
+      { path: '', component: PassengerDashboardComponent},
+      { path: ':id', component: PassengerViewerComponent}
+    ]
+  }
 ];
 
 
