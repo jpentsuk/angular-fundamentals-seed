@@ -1,4 +1,8 @@
-import { Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {Observable} from "rxjs";
+import {from} from "rxjs/observable/from";
+import { of} from "rxjs/observable/of";
+import {first} from "rxjs/operator/first";
 
 interface Nav {
   link: string,
@@ -359,7 +363,48 @@ interface Nav {
 
 
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+
+
+  ngOnInit(): void {
+
+    // put data into observable
+    const numbersAsObs = new Observable(subscriber => {
+      subscriber.next(1);
+      subscriber.next(2);
+      subscriber.next(3);
+      subscriber.next(4);
+
+    });
+
+    //take out data
+    numbersAsObs.subscribe(x => console.log(x));
+
+    // from
+    // put data as observable with from
+    const observable = from([10, 20, 30]);
+    const subscription = observable.subscribe(x => console.log(x));
+
+    // map
+    const names = from(["Katrin", "Ann", "Hugo", "Erik"]);
+    names.map(x => x + ' Mandra').subscribe(y => console.log(y));
+
+    // of
+    of(10,11,12,13).subscribe(x => console.log(x));
+
+    // first
+    
+
+
+
+  }
+
+
+
+
+
+
+
   // title: string;
   // numberOne: number = 1;
   // numberTwo: number = 2;
@@ -464,6 +509,7 @@ export class AppComponent {
       exact: true
     }
   ];
+
 
 
 
